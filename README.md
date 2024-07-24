@@ -20,7 +20,7 @@ Download and install Python from: https://www.python.org/downloads/
 ```bash
 mkdir itproject
 cd itproject
-git clone https://github.com/the-darklord/IT-Project.git
+git clone https://github.com/DityaChawla/School-Management-System.git
 cd IT-Project
 pip install virtualenv
 virtualenv django-env
