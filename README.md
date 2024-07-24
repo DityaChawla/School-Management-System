@@ -1,55 +1,69 @@
-# IT Project Instructions
+# Job Portal
 
-## Prerequisites
+A comprehensive job portal application developed using Django, providing a platform for job seekers and employers to connect.
 
-### Install Latest Git
-Download and install Git from: https://git-scm.com/download
+## Table of Contents
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-### Install Latest Python
-Download and install Python from: https://www.python.org/downloads/
+## Features
+- User authentication and authorization.
+- Job listing and search functionality.
+- Application management for job seekers.
+- Job posting and management for employers.
 
----
+## Tech Stack
+- **Backend:** Django, Python
+- **Frontend:** HTML, CSS, JavaScript
+- **Database:** SQLite (default), PostgreSQL (optional)
+- **Version Control:** Git
+- **Deployment:** Docker, Heroku/AWS (optional)
 
-# Steps to Follow
+## Installation
 
-## Open a Terminal
-- **Windows:** Use `cmd`
-- **Linux/MacOS:** Use `shell`
+### Prerequisites
+- Python 3.x
+- Django
+- Git
 
-## Enter the Following Commands
-```bash
-mkdir itproject
-cd itproject
-git clone https://github.com/DityaChawla/School-Management-System.git
-cd IT-Project
-pip install virtualenv
-virtualenv django-env
-```
+### Steps
+1. **Clone the repository**
+    ```bash
+    git clone https://github.com/DityaChawla/School-Management-System.git
+    cd jobportal
+    ```
 
-### For Windows:
-```bash
-cd django-env/Scripts
-activate
-cd ../..
-```
+2. **Create and activate a virtual environment**
+    ```bash
+    python -m venv env
+    source env/bin/activate  # On Windows use `env\Scripts\activate`
+    ```
 
-### For Linux/MacOS:
-```bash
-cd django-env/bin
-source activate
-cd ../..
-```
+3. **Install dependencies**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-### For All:
-```bash
-pip install -r requirements.txt
-python manage.py makemigrations
-python manage.py migrate
-python manage.py clearsessions
-python manage.py runserver
-```
+4. **Apply migrations**
+    ```bash
+    python manage.py migrate
+    ```
 
-## Open a Web Browser and Enter:
-```
-http://localhost:8000
-```
+5. **Run the development server**
+    ```bash
+    python manage.py runserver
+    ```
+
+## Usage
+- Navigate to `http://127.0.0.1:8000/` in your web browser.
+- Register as a new user, and explore the functionalities based on your user role (job seeker or employer).
+
+## Contributing
+Contributions are welcome! Please fork the repository and create a pull request with your changes. Ensure your code follows the project's style and passes all tests.
+
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
