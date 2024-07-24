@@ -1,0 +1,132 @@
+ {% load static %}
+
+ {% block body %}
+
+ {% include 'company_navigation.html' %}
+<marquee style="font-family : 'Monotype Corsiva'; font-size:25px;color:darkcyan ;background-color:black;font-weight:bold;margin-top:1%" >
+Add Project Details
+</marquee>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Practice School Portal</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        /* Add custom styles for the form */
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            border-radius: 20px; /* Rounded corners */
+        }
+
+        .btn-primary {
+            background-color: #007bff; /* Blue */
+            border-color: #007bff; /* Blue */
+            border-radius: 20px; /* Rounded corners */
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3; /* Darker blue */
+            border-color: #0056b3; /* Darker blue */
+        }
+    </style>
+</head>
+<body>
+<form class="container mt-5" onsubmit="return checkpass()" name="signup" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="jobtitle">Project Title</label>
+                <input type="text" class="form-control" id="jobtitle" name="jobtitle" placeholder="Enter Project Title" required>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="startdate">Start Date</label>
+                <input type="date" class="form-control" id="startdate" name="startdate" required>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="enddate">End Date</label>
+                <input type="date" class="form-control" id="enddate" name="enddate" required>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="salary">Salary</label>
+                <input type="text" class="form-control" id="salary" name="salary" placeholder="Enter Salary" required>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="logo">Company Logo</label>
+                <input type="file" class="form-control-file" id="logo" name="logo" required>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="experience">Vacancies</label>
+                <input type="text" class="form-control" id="experience" name="experience" placeholder="Enter Vacancies here" required>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="location">Company Location</label>
+                <input type="text" class="form-control" id="location" name="location" placeholder="Enter Location Here" required>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="skills">Skills</label>
+                <input type="text" class="form-control" id="skills" name="skills" placeholder="Enter Skills required here" required>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="5" placeholder="Enter Description Here" required></textarea>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+        </div>
+    </div>
+</form>
+<br>
+<br>
+<br>
+<br>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+ {% include 'footer.html' %}
+
+ {% if error == "no" %}
+ <script>
+     alert("Project Details added Successfully");
+     window.location=('{% url 'job_list' %}')
+ </script>
+ {% endif %}
+
+ {% if error == "yes" %}
+ <script>
+     alert("Something went wrong, Try Again");
+ </script>
+ {% endif %}
+
+
+ {% endblock body %}

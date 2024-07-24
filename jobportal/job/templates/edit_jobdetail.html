@@ -1,0 +1,84 @@
+ {% load static %}
+
+ {% block body %}
+
+ {% include 'company_navigation.html' %}
+<marquee style="font-family : 'Monotype Corsiva'; font-size:25px;color:darkcyan ;background-color:black;font-weight:bold;margin-top:1%" >
+Edit Project Details
+</marquee>
+ <form class="container mt-5" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+     <div class="form-row">
+         <div class="form-group col-md-12" >
+             <label>Project Title</label>
+             <input type="text" class="form-control" name="jobtitle" value="{{job.title}}">
+         </div>
+
+          <div class="form-group col-md-6" >
+              <label>Start Date</label><span style="color:red">[{{job.start_date}}]</span>
+             <input type="date" class="form-control" name="startdate" >
+         </div>
+
+
+         <div class="form-group col-md-6" >
+             <label>End Date</label><span style="color:red">[{{job.end_date}}]</span>
+             <input type="date" class="form-control" name="enddate" >
+         </div>
+
+          <div class="form-group col-md-6" >
+             <label>Salary</label>
+             <input type="text" class="form-control" name="salary"  value="{{job.salary}}">
+          </div>
+
+
+         <div class="form-group col-md-6" >
+             <label>Company Logo</label>
+             <input type="file" class="form-control" name="logo" >
+         </div>
+
+         <div class="form-group col-md-6" >
+             <label>Experience(In Years)</label>
+             <input type="text" class="form-control" name="experience" value="{{job.experience}}">
+         </div>
+
+         <div class="form-group col-md-6" >
+             <label>Company Location</label>
+             <input type="text" class="form-control" name="location" value="{{job.location}}">
+         </div>
+
+
+        <div class="form-group col-md-12" >
+             <label>Skills</label>
+             <input type="text" class="form-control" name="skills" value="{{job.skills}}">
+         </div>
+
+  <div class="form-group col-md-12" >
+             <label>Description</label>
+   <textarea class="form-control" name="description" >"{{job.description}}"</textarea>
+         </div>
+
+         </div>
+
+     </div>
+
+     <input type="submit" value="Submit" class="btn btn-primary my-3" style="width:200px">
+ </form>
+
+
+ {% include 'footer.html' %}
+
+ {% if error == "no" %}
+ <script>
+     alert("Project Details added Successfully");
+     window.location=('{% url 'edit_jobdetail' job.id %}')
+ </script>
+ {% endif %}
+
+ {% if error == "yes" %}
+ <script>
+     alert("Something went wrong, Try Again");
+ </script>
+ {% endif %}
+
+
+ {% endblock body %}

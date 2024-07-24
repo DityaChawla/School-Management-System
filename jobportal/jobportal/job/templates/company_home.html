@@ -1,0 +1,72 @@
+ {% load static %}
+
+ {% block body %}
+
+ {% include 'company_navigation.html' %}
+
+
+<marquee style="font-family : 'Monotype Corsiva'; font-size:25px;color:darkcyan ;background-color:black;font-weight:bold;margin-top:1%" >
+ Company Home
+</marquee>
+<hr>
+<form class="container mt-5" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label style="font-weight: bold;">First Name:</label>
+      <input type="text" class="form-control" name="fname" value="{{recruiter.user.first_name}}" readonly required style="border-radius: 5px; border: 1px solid #ccc; padding: 8px;">
+    </div>
+    <div class="form-group col-md-6">
+      <label style="font-weight: bold;">Last Name:</label>
+      <input type="text" class="form-control" name="lname" value="{{recruiter.user.last_name}}" readonly required style="border-radius: 5px; border: 1px solid #ccc; padding: 8px;">
+    </div>
+    <div class="form-group col-md-6">
+      <label style="font-weight: bold;">Company Name:</label>
+      <input type="text" class="form-control" name="company" value="{{recruiter.company}}" required style="border-radius: 5px; border: 1px solid #ccc; padding: 8px;">
+    </div>
+    <div class="form-group col-md-6">
+      <label style="font-weight: bold;">Contact Number:</label>
+      <input type="text" class="form-control" name="contact" value="{{recruiter.contact}}" required style="border-radius: 5px; border: 1px solid #ccc; padding: 8px;">
+    </div>
+    <div class="form-group col-md-12">
+      <label style="font-weight: bold;">Email ID:</label>
+      <input type="text" class="form-control" name="email" value="{{recruiter.user.username}}" required style="border-radius: 5px; border: 1px solid #ccc; padding: 8px;">
+    </div>
+    <div class="form-group col-md-6">
+      <label style="font-weight: bold;">Gender:</label>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline1" name="gender" class="custom-control-input" value="Male">
+        <label class="custom-control-label" for="customRadioInline1">Male</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline2" name="gender" class="custom-control-input" value="Female">
+        <label class="custom-control-label" for="customRadioInline2">Female</label>
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label style="font-weight: bold;">Image:</label>
+      <input type="file" class="form-control" name="image" style="border-radius: 5px; border: 1px solid #ccc; padding: 8px;">
+    </div>
+  </div>
+  <input type="submit" value="Submit" class="btn btn-primary my-3" style="background-color: darkcyan; color: white; border: none; border-radius: 5px; padding: 10px;">
+</form>
+<br>
+ <br>
+ <br>
+ <br>
+ {% include 'footer.html' %}
+
+ {% if error == "no" %}
+ <script>
+     alert("Profile updated Successfully");
+     window.location=('{% url 'company_home' %}')
+ </script>
+ {% endif %}
+
+ {% if error == "yes" %}
+ <script>
+     alert("Something went wrong, Try Again");
+ </script>
+ {% endif %}
+
+ {% endblock body %}

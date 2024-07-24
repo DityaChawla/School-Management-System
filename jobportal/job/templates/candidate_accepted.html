@@ -1,0 +1,84 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'company_navigation.html' %}
+<style>
+    body {
+        background-color: white; /* White background color for the webpage */
+    }
+
+    tr:nth-child(even) {
+        background-color: #ADD8E6; /* Light blue background color for even rows */
+    }
+
+    tr:nth-child(odd) {
+        background-color: #ECECEC; /* Very light grey background color for odd rows */
+    }
+
+    tr {
+        text-align: center;
+    }
+</style>
+<marquee style="font-family : 'Monotype Corsiva'; font-size:25px;color:darkcyan ;background-color:black;font-weight:bold;margin-top:1%" >
+Applied Candidate List
+
+</marquee>
+ <hr>
+ <div class="container">
+
+ <table class="table table-hover" id="example">
+  <thead>
+  <tr style="background-color : #000080; color:white">
+   <th>S. No.</th>
+   <th>Full Name</th>
+   <th>Email ID</th>
+   <th>Contact no</th>
+   <th>Job Title</th>
+   <th>Company</th>
+   <th>Apply Date</th>
+   <th>Resume</th>
+   <th>Action</th> <!-- New column for actions -->
+  </tr>
+  </thead>
+
+
+  <tbody>
+  {% for i in data %}
+    {% if request.user.id == i.job.recruiter.user.id %}
+        <tr style="background-color : #DEB887">
+            <td>{{forloop.counter}}</td>
+            <td>{{i.student.user.first_name}} {{i.student.user.last_name}}</td>
+            <td>{{i.student.user.username}}</td>
+            <td>{{i.student.mobile}}</td>
+            <td>{{i.job.title}}</td>
+            <td>{{i.job.recruiter.company}}</td>
+            <td>{{i.applydate}}</td>
+            <td><a href="{{i.resume.url}}">Download Resume</a></td>
+            <td>
+                {% if i.status == 'Accepted' %}
+                    <span class="text-success">Accepted</span>
+                {% elif i.status == 'Rejected' %}
+                    <span class="text-danger">Rejected</span>
+                {% else %}
+                    <form method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="applicant_id" value="{{ i.id }}">
+                        <button type="submit" name="action" value="accept" class="btn btn-success">Accept</button>
+                    </form>
+                    <form method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="applicant_id" value="{{ i.id }}">
+                        <button type="submit" name="action" value="reject" class="btn btn-danger">Reject</button>
+                    </form>
+                {% endif %}
+            </td>
+        </tr>
+    {% endif %}
+{% endfor %}
+
+  </tbody>
+ </table>
+ </div>
+
+ {% endblock body %}

@@ -1,0 +1,96 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'company_navigation.html' %}
+<style>
+    body {
+        background-color: white; /* White background color for the webpage */
+    }
+
+    tr:nth-child(even) {
+        background-color: #ADD8E6; /* Light blue background color for even rows */
+    }
+
+    tr:nth-child(odd) {
+        background-color: #ECECEC; /* Very light grey background color for odd rows */
+    }
+
+    tr {
+        text-align: center;
+    }
+</style>
+<marquee style="font-family : 'Monotype Corsiva'; font-size:25px;color:darkcyan ;background-color:black;font-weight:bold;margin-top:1%">
+    Applied Candidate List
+</marquee>
+<hr>
+<div class="container">
+
+    <table class="table table-hover" id="example">
+        <thead>
+        <tr style="background-color: #000080; color: white">
+            <th>S. No.</th>
+            <th>Full Name</th>
+            <th>Email ID</th>
+            <th>Contact no</th>
+            <th>Job Title</th>
+            <th>Company</th>
+            <th>Apply Date</th>
+            <th>Resume</th>
+            <th>Action</th> <!-- New column for actions -->
+        </tr>
+        </thead>
+
+
+        <tbody>
+        {% for i in data %}
+            {% if request.user.id == i.job.recruiter.user.id %}
+                <tr style="background-color:#ECECEC">
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.student.user.first_name}} {{i.student.user.last_name}}</td>
+                    <td>{{i.student.user.username}}</td>
+                    <td>{{i.student.mobile}}</td>
+                    <td>{{i.job.title}}</td>
+                    <td>{{i.job.recruiter.company}}</td>
+                    <td>{{i.applydate}}</td>
+                    <td><a href="{{i.resume.url}}">Download Resume</a></td>
+                    <td>
+                        {% if i.status == 'Accepted' %}
+                            <span class="text-success">Accepted</span>
+                        {% elif i.status == 'Rejected' %}
+                            <span class="text-danger">Rejected</span>
+                        {% else %}
+                            <span id="status-{{ i.id }}"></span>
+                            <button type="button" class="btn btn-success" id="accept-btn-{{ i.id }}" onclick="setStatus('accept', {{ i.id }})">Accept</button>
+                            <button type="button" class="btn btn-danger" id="reject-btn-{{ i.id }}" onclick="setStatus('reject', {{ i.id }})">Reject</button>
+                        {% endif %}
+                    </td>
+                </tr>
+
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function setStatus(action, id) {
+        var statusSpan = document.getElementById("status-" + id);
+        var acceptBtn = document.getElementById("accept-btn-" + id);
+        var rejectBtn = document.getElementById("reject-btn-" + id);
+
+        if (action === 'accept') {
+            statusSpan.textContent = 'Accepted';
+            statusSpan.className = 'text-success';
+            acceptBtn.style.display = 'none';
+            rejectBtn.style.display = 'none';
+        } else if (action === 'reject') {
+            statusSpan.textContent = 'Rejected';
+            statusSpan.className = 'text-danger';
+            acceptBtn.style.display = 'none';
+            rejectBtn.style.display = 'none';
+        }
+    }
+</script>
+
+{% endblock body %}

@@ -1,0 +1,91 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<style>
+    .login-card {
+        margin-top: 50px;
+        margin-bottom: 50px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-header {
+        background-color: darkcyan;
+        color: white;
+        font-weight: bold;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .login-form {
+        padding: 20px;
+    }
+
+    .login-btn {
+        background-color: darkcyan;
+        border-color: darkcyan;
+    }
+
+    .create-account-btn {
+        background-color: black;
+        border-color: black;
+    }
+</style>
+
+<marquee style="font-family: 'Monotype Corsiva'; font-size: 25px; color: darkcyan; background-color: black; font-weight: bold; margin-top: 1%">
+    Faculty Login
+</marquee>
+<hr>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card login-card">
+                <div class="card-header login-header">
+                    Faculty Login
+                </div>
+                <div class="card-body login-form">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="company" style="font-weight: bold;">Faculty Email:</label>
+                            <input type="text" class="form-control" id="company" name="company" placeholder="Enter Faculty Mail ID">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd" style="font-weight: bold;">Password:</label>
+                            <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter Password">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block login-btn">Login</button>
+                        <a href="{% url 'company_signup' %}" class="btn btn-secondary btn-block create-account-btn">Create an Account</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'footer.html' %}
+
+{% if error == "no" %}
+<script>
+    alert("Login Successfully");
+    window.location=('{% url 'company_home' %}')
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert("Invalid Login Credentials, Try Again");
+</script>
+{% endif %}
+
+{% if error == "not" %}
+<script>
+    alert("Your Login status is pending. Try after sometime.");
+</script>
+{% endif %}
+
+{% endblock body %}

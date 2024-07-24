@@ -1,0 +1,94 @@
+{% load static %}
+{% block body %}
+{% include 'navigation.html' %}
+
+<style>
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.marquee {
+  font-family: 'Monotype Corsiva';
+  font-size: 25px;
+  color: darkcyan;
+  background-color: black;
+  font-weight: bold;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.contact-info {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.contact-heading {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.contact-item {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.contact-item h4 {
+  margin-bottom: 10px;
+  color: #333; /* Darken the color */
+}
+
+.contact-item p {
+  margin: 0;
+}
+
+.social-link {
+  color: #333;
+  text-decoration: none;
+  margin-right: 10px;
+  transition: color 0.3s ease;
+}
+
+.social-link:hover {
+  color: darkcyan;
+}
+
+</style>
+
+<div class="marquee">Contact us</div>
+<hr>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-12 contact-info">
+            <h2 class="contact-heading">Contact Information</h2>
+            <div class="contact-item">
+                <h4>Phone</h4>
+                <p>9876543210</p>
+            </div>
+            <div class="contact-item">
+                <h4>Email</h4>
+                <p>team@gmail.com</p>
+            </div>
+            <div class="contact-item">
+                <h4>Address</h4>
+                <p>AB5, MIT, Manipal</p>
+            </div>
+            <div class="contact-item">
+                <h4>Social Media</h4>
+                <p>
+                    <a href="https://mail.google.com/mail/u/0/#inbox" class="social-link"><i class="fa fa-envelope" aria-hidden="true"></i> Gmail</a> |
+                    <a href="https://www.linkedin.com/in/tejas-kittur/" class="social-link"><i class="fa fa-linkedin" aria-hidden="true"></i> LinkedIn</a> |
+                    <a href="https://www.instagram.com/tejas027_/" class="social-link"><i class="fa fa-instagram" aria-hidden="true"></i> Instagram</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

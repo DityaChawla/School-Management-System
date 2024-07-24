@@ -1,0 +1,28 @@
+{% load static %}
+
+<div class="mt-30" style="background-color: #333; color: #fff; width: 100%; height: auto; padding: 20px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mt-3">
+                <h3 class="text-white">Contact Information</h3>
+                <p><i class="fa fa-map-marker text-danger"></i> MIT MANIPAL</p>
+                <p><i class="fa fa-envelope text-danger"></i> mit.manipal@manipal.edu</p>
+                <p><i class="fa fa-mobile text-danger"></i> 9876543210</p>
+                <p><i class="fa fa-globe text-danger"></i> www.mitmanipal.com</p>
+            </div>
+            <div class="col-md-4 mt-3">
+                <h3 class="text-white">Online Projects</h3>
+                <p>This is my ITL project and I have made it using Bootstrap, Django, HTML, CSS, and Javascript</p>
+            </div>
+            <div class="col-md-4 mt-3">
+                <h3 class="text-white">Newsletter</h3>
+                <p>If you want any extra information then send us your Email ID:</p>
+                <form method="post" class="form-inline">
+                    {% csrf_token %}
+                    <input type="email" name="emailid" placeholder="Email ID" required class="form-control">
+                    <input type="submit" value="Send" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
